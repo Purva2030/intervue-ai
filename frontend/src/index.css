@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink-50 text-ink-800 font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    min-height: 100vh;
+    background-color: #07060f;
+    background-image:
+      radial-gradient(60% 46% at 12% -8%, rgba(124, 92, 255, 0.24) 0%, rgba(124, 92, 255, 0) 60%),
+      radial-gradient(46% 40% at 104% 8%, rgba(34, 211, 196, 0.16) 0%, rgba(34, 211, 196, 0) 60%),
+      radial-gradient(55% 50% at 50% 110%, rgba(124, 92, 255, 0.12) 0%, rgba(124, 92, 255, 0) 60%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  * {
+    @apply border-ink-200;
+  }
+}
+
+@layer components {
+  /* Glass panels — layered shadow + inset top highlight reads as a raised
+     bevel catching light, which is what makes a flat card feel 3D. */
+  .card {
+    @apply relative rounded-2xl border border-ink-200 shadow-card;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%),
+      rgba(18, 17, 37, 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .card-lg {
+    @apply relative rounded-3xl border border-ink-200 shadow-card-lg;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%),
+      rgba(18, 17, 37, 0.76);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
+  .card-tilt {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+    transform-style: preserve-3d;
+  }
+  .card-tilt:hover {
+    transform: perspective(1000px) rotateX(1.2deg) rotateY(-1.6deg) translateY(-4px);
+    @apply shadow-glow;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-button transition-all duration-200 hover:brightness-110 hover:shadow-glow active:scale-[0.97] active:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none;
+    background: linear-gradient(180deg, #9376ff 0%, #7c5cff 46%, #6a45f5 100%);
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-ink-200 px-5 py-3 text-sm font-semibold text-ink-700 shadow-card transition-all duration-200 hover:border-brand-300/60 hover:text-white active:scale-[0.97];
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+}
+
+@layer utilities {
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      rgba(124, 92, 255, 0) 0%,
+      rgba(124, 92, 255, 0.28) 50%,
+      rgba(124, 92, 255, 0) 100%
+    );
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .font-mono-num {
+    @apply font-mono tabular-nums;
+  }
+  .text-glow {
+    text-shadow: 0 0 24px rgba(124, 92, 255, 0.55);
+  }
+  .grid-dot {
+    background-image: var(--tw-gradient-grid, radial-gradient(rgba(168, 172, 224, 0.14) 1px, transparent 1px));
+    background-size: 22px 22px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 152, 214, 0.28);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 172, 224, 0.45);
+  background-clip: padding-box;
+}
+
+textarea {
+  resize: vertical;
+}
