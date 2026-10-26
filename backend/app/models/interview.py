@@ -107,14 +107,15 @@ class InterviewRequest(BaseModel):
     message: str = ""
 
 
-class InterviewResponse(BaseModel):
-    sessionId: str
-    message: str
-    done: bool
-    assessment: FinalAssessment | None = None
-
 class FinalAssessment(BaseModel):
     summary: str
     strengths: list[str]
     gaps: list[str]
     next: str
+
+
+class InterviewResponse(BaseModel):
+    sessionId: str
+    message: str
+    done: bool
+    assessment: FinalAssessment | None = None
